@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Coins : MonoBehaviour
 {
+    public int currentCoins;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +22,7 @@ public class Coins : MonoBehaviour
         if (other.gameObject.CompareTag("Coin"))
         {
             other.gameObject.SetActive(false);
-            CoinCounter.instance.IncreaseCoins(1);
+            currentCoins += 1;
         }
     }
 }
