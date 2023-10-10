@@ -21,8 +21,8 @@ public class Coins : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coin"))
         {
-            other.gameObject.SetActive(false);
             currentCoins += 1;
+            other.gameObject.SetActive(false);
         }
     }
 }

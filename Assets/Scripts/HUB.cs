@@ -5,33 +5,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class CoinCounter : MonoBehaviour
+public class Hub : MonoBehaviour
 {
-    public static CoinCounter instance;
+    public static Hub instance;
 
-    public TMP_Text coinText;
-    public TMP_Text healthText;
+    public TextMeshProUGUI coinText;
+    public TextMeshProUGUI healthText;
 
     public int currentCoins = 0;
     public int currentHealth = 10;
-    public Coins Coins;
-    public Health Health;
+    public Coins coins;
+    public Health health;
 
     // Start is called before the first frame update
     void Start()
     {
+        
     }
 
     private void Update()
     {
-        coinText.text = currentCoins.ToString();
-        healthText.text = currentHealth.ToString();
+        coinText.text = "Coins: " + currentCoins;
+        healthText.text = "Health: " + currentHealth;
     }
 
     public void IncreaseCoins(int value)
     {
-        
+        currentCoins += value;
+        coinText.text = "Coins: " + currentCoins.ToString();
     }
+    
 }
 
     
