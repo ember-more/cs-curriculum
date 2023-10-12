@@ -5,6 +5,10 @@ using UnityEngine;
 public class Coins : MonoBehaviour
 {
     public int currentCoins;
+
+    public int value;
+
+    private static int IncreaseCoins;
     // Start is called before the first frame update
     void Start()
     {

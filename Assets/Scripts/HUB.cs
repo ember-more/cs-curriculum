@@ -16,25 +16,32 @@ public class Hub : MonoBehaviour
     public int currentHealth = 10;
     public Coins coins;
     public Health health;
+    public int value;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        coinText.text = "Coins: " + currentCoins;
     }
 
     private void Update()
     {
-        coinText.text = "Coins: " + currentCoins;
         healthText.text = "Health: " + currentHealth;
     }
 
     public void IncreaseCoins(int value)
     {
-        currentCoins += value;
-        coinText.text = "Coins: " + currentCoins.ToString();
+        currentCoins += 1;
+        coinText.text = "Coins: " + currentCoins;
     }
-    
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Coin"))
+        {
+            
+        }
+    }
 }
 
     
