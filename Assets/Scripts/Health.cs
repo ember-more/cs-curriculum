@@ -7,27 +7,41 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Serialization;
 
+using UnityEngine.SceneManagement;
+
 public class Health : MonoBehaviour
 
 
 {
-    private float timer;
-    public float originalTimer = (float)1.5;
-    
-    public int currentHealth;
+    public float timer;
+    public bool iframes;
+    public Hub hub;
+    public int health;
     // Start is called before the first frame update
     void Start()
     {
-        timer = originalTimer;
+        hub = GameObject.FindObjectOfType<Hub>();
+        timer = 1.5f;
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-        timer -= Time.deltaTime;
+        if (iframes)
+        {
+            timer -= Time.deltaTime;
+        }
+        
         if (timer < 0)
         {
-            
+            timer = 1f;
+            iframes = false;
+        }
+
+        if (Time.deltaTime < 0)
+        {
+            timer = 1f;
+            iframes = false;
         }
     }
 
@@ -35,8 +49,32 @@ public class Health : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Spikes"))
         {
-            currentHealth -= 1;
+            if (!iframes)
+            {
+                ChangeHealth(-1);
+                iframes = true;
+            }
+            else
+            {
+                ChangeHealth(0);
+            }
         }
+    }
+
+    void ChangeHealth(int amount)
+    {
+        hub.health = hub.health + amount;
+        if (hub.health < 1)
+        {
+            Death();
+        }
+    }
+
+    void Death()
+    {
+        hub.health = 10;
+        hub.coins = 0;
+        SceneManager.LoadScene("Start");
     }
 
     

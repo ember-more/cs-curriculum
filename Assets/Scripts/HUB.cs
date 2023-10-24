@@ -7,40 +7,36 @@ using TMPro;
 
 public class Hub : MonoBehaviour
 {
-    public static Hub instance;
-
+    public static Hub hub;
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI healthText;
+    public int coins;
+    public int health;
 
-    public int currentCoins = 0;
-    public int currentHealth = 10;
-    public Coins coins;
-    public Health health;
-    public int value;
 
-    // Start is called before the first frame update
+    private void Awake()
+    {
+        if (hub != null && hub != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            hub = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     void Start()
     {
-        coinText.text = "Coins: " + currentCoins;
+        coins = 0;
+        health = 10;
     }
 
     private void Update()
     {
-        healthText.text = "Health: " + currentHealth;
-    }
-
-    public void IncreaseCoins(int value)
-    {
-        currentCoins += 1;
-        coinText.text = "Coins: " + currentCoins;
-    }
-
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.CompareTag("Coin"))
-        {
-            
-        }
+        healthText.text = "Health: " + health.ToString();
+        coinText.text = "Coins: " + coins.ToString();
     }
 }
 
