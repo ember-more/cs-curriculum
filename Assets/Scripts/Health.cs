@@ -77,5 +77,12 @@ public class Health : MonoBehaviour
         SceneManager.LoadScene("Start");
     }
 
-    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Pot"))
+        {
+            ChangeHealth(1);
+            other.gameObject.SetActive(false);
+        }
+    }
 }
