@@ -21,5 +21,5 @@ public class Projectile : MonoBehaviour
     void FireGone()
     {
         Destroy(gameObject);
-    }
+    } 
 }
