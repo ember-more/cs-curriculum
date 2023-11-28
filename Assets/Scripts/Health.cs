@@ -59,6 +59,15 @@ public class Health : MonoBehaviour
                 ChangeHealth(0);
             }
         }
+
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            if (!iframes)
+            {
+                ChangeHealth(-2);
+            }
+            
+        }
     }
 
     void ChangeHealth(int amount)
@@ -85,4 +94,5 @@ public class Health : MonoBehaviour
             other.gameObject.SetActive(false);
         }
     }
+    
 }
