@@ -28,6 +28,7 @@ public class Turret : MonoBehaviour
         }
         else
         {
+
             if (inRange)
             {
                 shoot();
@@ -55,5 +56,6 @@ public class Turret : MonoBehaviour
     {
         Instantiate(fire, shootpoint.position, shootpoint.rotation);
         TurretTimer = startTime;
+        
     }
 }
